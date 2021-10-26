@@ -1,0 +1,60 @@
+/*Style the header with a gray background and some padding */
+.header {
+    overflow: hidden;
+    background-color:whitesmoke;
+    padding: 20px 5px;
+    height:110px;
+  }
+  /* logo*/
+  .logo img {
+    position: absolute;
+    top: 25px;
+    border-radius:120px; 
+    width: 65px;
+  }
+  /*Style the logo*/
+    .centerLogo img{
+        position:absolute;
+        left: 550px;
+        width: 220px;
+        top: 15px;
+      }
+  /*Style the about*/
+  .about {
+    position:relative;
+    float: right;
+    color:black;
+    background-color:white;
+    text-align: center;
+    padding: 20px;
+    text-decoration:none;
+    font-size: 25px;
+    line-height: 25px;
+    border-radius: 4px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  /* Change the background color on mouse-over */
+  .header a:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  /* Style the active/current link*/
+  .header a.active {
+    background-color: black;
+    color: white;
+  }
+  
+  
+/*style Theme*/
+.theme h2 {
+  color:black;
+  font-size: 45px;
+  font-weight: 800;
+  text-transform: capitalize;
+  margin-top: 15px;
+  margin-bottom: 45px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
