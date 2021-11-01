@@ -1,11 +1,9 @@
-from flask import Flask,render_template,url_for,flash,redirect
-from forms import LoginForm,RegistrationForm
-from flask_sqlalchemy import SQLAlchemy
+from flask import render_template,url_for,flash,redirect
+from userAuth.forms import RegistrationForm,LoginForm
+from userAuth import app,db,bcrypt
+from userAuth.models import User
 
 
-app = Flask(__name__)
- 
-app.config['SQLACHEMY_DATABASE_URI']=''
 
 
 
@@ -14,6 +12,10 @@ app.config['SQLACHEMY_DATABASE_URI']=''
 def signup():
     form = RegistrationForm()
     if form.validate_on_submit() :
+        hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data,email=form.email.data,password=hashed_pw)
+        db.session.add(user)
+        db.session.commit()
         flash(f'Account Created Succesfully for {form.username.data}!','success')
         return redirect(url_for('login'))
     return render_template('signup.html',title='SignUp',form=form )
@@ -30,7 +32,8 @@ def login():
           return redirect(url_for('services'))
         else :
             flash('Incorrect Username or Password','danger') 
-    return render_template('Login.html',title='Login',form=form )
+    return render_template('login.html',title='Login',form=form )
+    
 
 
 
@@ -38,16 +41,3 @@ def login():
 @app.route('/services',methods=['GET','POST'])
 def services():
     return render_template('services.html',title='services')
-
-
-
-
-
-
-app.config.update(dict(
-    SECRET_KEY='1acc8e0196e8403fdd23e4502051937a',
-    WTF_CSRF_SECRET_KEY='1acc8e0196e8403fdd23e4502051937a'
-))
-
-if __name__ ==  '__main__' :
-    app.run(debug=True)
