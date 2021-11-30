@@ -1,13 +1,16 @@
 {% extends "layout.html" %}
-{% block content %}
- 
+
+
+{% block content1 %}
+<a class = 'about' href="{{ url_for ('login') }}" >
+  Logout
+ </a>
+ {% endblock content1%}
 
 
 
-
-
-
-<!--Start Services-->
+ {% block content %}
+ <!--Start Services-->
    <div class="services">
      <!--Upload-->
       <div class="card">
